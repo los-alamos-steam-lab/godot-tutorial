@@ -9,7 +9,7 @@ var dir = directions.new()
 var movedir = Vector2.ZERO
 var spritedir = "down"
 
-onready var SPEED = 0
+var SPEED = 0
 
 # Putting this here so that we can setup future calls from the 
 # child scripts and not have them fail
