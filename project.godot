@@ -8,9 +8,20 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node",
+"class": "directions",
+"language": "GDScript",
+"path": "res://engine/directions.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "entity",
+"language": "GDScript",
+"path": "res://engine/entity.gd"
+} ]
 _global_script_class_icons={
-
+"directions": "",
+"entity": ""
 }
 
 [application]
