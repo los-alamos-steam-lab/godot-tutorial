@@ -2,12 +2,33 @@ extends KinematicBody2D
 
 const SPEED = 70
 var movedir = Vector2(0,0)
-
+var spritedir = "down"
 
 # _physics_process is called by the game engine
 func _physics_process(delta):
 	controls_loop()
 	movement_loop()
+	spritedir_loop()
+	# print(spritedir)
+	
+	# We're setting our animation here.  I've replaced Vector2(0,-1)
+	# with Vector2.UP for readability, and so forth.  These are new to godot 3.1 
+	# I've also changed the order of the if statement to prioritize being
+	# idle if movedir is zero and created a single (very long) if statement
+	# for testing the push animation.
+
+	if movedir == Vector2.ZERO:
+		anim_switch("idle")
+	elif is_on_wall():
+		if (spritedir == "left" and test_move(transform, Vector2.LEFT))\
+		or (spritedir == "right" and test_move(transform, Vector2.RIGHT))\
+		or (spritedir == "up" and test_move(transform, Vector2.UP))\
+		or (spritedir == "down" and test_move(transform, Vector2.DOWN)):
+			anim_switch("push")
+	else: 
+		anim_switch("walk")
+
+	
 	
 # controls_loop looks for player input
 func controls_loop():
@@ -32,5 +53,22 @@ func movement_loop():
 	# along walls that are blocking your path
 	move_and_slide(motion, Vector2(0,0))
 	
+func spritedir_loop():
+	match movedir:
+		Vector2(-1, 0):
+			spritedir = "left"
+		Vector2(1, 0):
+			spritedir = "right"
+		Vector2(0, -1):
+			spritedir = "up"
+		Vector2(0, 1):
+			spritedir = "down"
+			
+# This changes our player animation.  "animation" is a string 
+# of the sort "idle", "push", or "walk"
+func anim_switch(animation):
+	var newanim = str(animation, spritedir)
+	if $anim.current_animation != newanim:
+		$anim.play(newanim)
 	
 	
