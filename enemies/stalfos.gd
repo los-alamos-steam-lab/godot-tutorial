@@ -7,6 +7,7 @@ var movetimer = 0
 # other actions when the file loads
 func _ready():
 	SPEED = 40
+	DAMAGE = 1
 	$anim.play("default")
 	movedir = dir.rand()
 	
@@ -15,6 +16,7 @@ func _ready():
 	
 func _physics_process(delta):
 	movement_loop()
+	damage_loop()
 	
 	# count down the movetimer every tick
 	if movetimer > 0:

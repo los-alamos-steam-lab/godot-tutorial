@@ -5,21 +5,36 @@ extends KinematicBody2D
 # nothing wrong with autoload, but I prefer things in the code
 var dir = directions.new()
 
+# "CONSTANTS"
+var SPEED = 0
+var TYPE = "ENEMY"
+# have to declare damage here so we can set it in the child scripts
+var DAMAGE = null
+
 # MOVEMENT
 var movedir = Vector2.ZERO
+var knockdir = Vector2.ZERO
 var spritedir = "down"
 
-onready var SPEED = 0
+var hitstun = 0
+var health = 1
+
 
 # Putting this here so that we can setup future calls from the 
 # child scripts and not have them fail
 func _ready():
-	pass
+	return
 
 func movement_loop():
-	# .normalized makes it so that diagonal movement is 
-	# the same length as 4-driectional movement
-	var motion = movedir.normalized() * SPEED
+	var motion 
+
+	# if you aren't in hitstun then move normally
+	# otherwise get knocked back	
+	if hitstun == 0:
+		motion = movedir.normalized() * SPEED
+	else:
+		motion = knockdir.normalized() * SPEED * 1.5
+		
 	
 	# move_and_slide takes care of collisions and has you slide 
 	# along walls that are blocking your path
@@ -42,3 +57,22 @@ func anim_switch(animation):
 	var newanim = str(animation, spritedir)
 	if $anim.current_animation != newanim:
 		$anim.play(newanim)
+		
+func damage_loop():
+	# If you're in hitstun countdown the timer
+	if hitstun > 0:
+		hitstun -= 1
+		
+	# for any body that is overlapping the entity's hitbox
+	for body in $hitbox.get_overlapping_bodies():
+		# if the entity isn't already hit, and the body gives damage, 
+		# and the body is a different type that the entity
+		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE:
+			# decrease health by the body's damage
+			health -= body.get("DAMAGE")
+			# Set the hitstun timer
+			hitstun = 10
+			# set knockdir to the opposite of the entity approached
+			# the body from
+			knockdir = transform.origin - body.transform.origin
+

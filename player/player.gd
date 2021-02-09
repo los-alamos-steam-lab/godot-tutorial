@@ -3,6 +3,7 @@ extends entity
 # ready function lets us set "constants" when the file loads
 func _ready():
 	SPEED = 70
+	TYPE = "PLAYER"
 	
 	#This calls the ready function in the parent script
 	._ready()
@@ -12,6 +13,7 @@ func _physics_process(delta):
 	controls_loop()
 	movement_loop()
 	spritedir_loop()
+	damage_loop()
 	
 	# We're setting our animation here.  I've replaced Vector2(0,-1)
 	# with Vector2.UP for readability, and so forth.  These are new to godot 3.1 
