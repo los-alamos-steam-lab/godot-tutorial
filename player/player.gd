@@ -9,7 +9,7 @@ func _physics_process(delta):
 	controls_loop()
 	movement_loop()
 	spritedir_loop()
-	# print(spritedir)
+	print(spritedir)
 	
 	# We're setting our animation here.  I've replaced Vector2(0,-1)
 	# with Vector2.UP for readability, and so forth.  These are new to godot 3.1 
@@ -17,17 +17,17 @@ func _physics_process(delta):
 	# idle if movedir is zero and created a single (very long) if statement
 	# for testing the push animation.
 
-	if movedir == Vector2.ZERO:
-		anim_switch("idle")
-	elif is_on_wall():
-		if (spritedir == "left" and test_move(transform, Vector2.LEFT))\
-		or (spritedir == "right" and test_move(transform, Vector2.RIGHT))\
-		or (spritedir == "up" and test_move(transform, Vector2.UP))\
-		or (spritedir == "down" and test_move(transform, Vector2.DOWN)):
-			anim_switch("push")
-	else: 
-		anim_switch("walk")
-
+#	if movedir == Vector2.ZERO:
+#		anim_switch("idle")
+##	elif is_on_wall():
+##		if (spritedir == "left" and test_move(transform, Vector2.LEFT))\
+##		or (spritedir == "right" and test_move(transform, Vector2.RIGHT))\
+##		or (spritedir == "up" and test_move(transform, Vector2.UP))\
+##		or (spritedir == "down" and test_move(transform, Vector2.DOWN)):
+##			anim_switch("push")
+#	else: 
+#		anim_switch("walk")
+#
 	
 	
 # controls_loop looks for player input
@@ -51,17 +51,17 @@ func movement_loop():
 	
 	# move_and_slide takes care of collisions and has you slide 
 	# along walls that are blocking your path
-	move_and_slide(motion, Vector2(0,0))
+	move_and_slide(motion, Vector2.ZERO)
 	
 func spritedir_loop():
 	match movedir:
-		Vector2(-1, 0):
+		Vector2.LEFT:
 			spritedir = "left"
-		Vector2(1, 0):
+		Vector2.RIGHT:
 			spritedir = "right"
-		Vector2(0, -1):
+		Vector2.UP:
 			spritedir = "up"
-		Vector2(0, 1):
+		Vector2.DOWN:
 			spritedir = "down"
 			
 # This changes our player animation.  "animation" is a string 
