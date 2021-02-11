@@ -2,7 +2,8 @@
 
 This is a fairly faithful account of the code used in fornclake's godot zelda-like tutorials
 
-Lesson Four:  https://www.youtube.com/watch?v=vp57qbgenOE&list=PLv0bAfkzWSiY4d_FJlQTlFOZh34nrlJZY&index=4
+Lesson Five: https://www.youtube.com/watch?v=zauf7PR3CzM&list=PLv0bAfkzWSiY4d_FJlQTlFOZh34nrlJZY&index=5
+Sword Sprite: https://sprites.retro-dragon.com/index.php/2018/08/28/zlg-sword/
 
 I've added comments and changed a few things based on comments on his YouTube Channel, differences in editions,
 and places where I saw room for improvement.  I have found clones of this repository to work inconsistently 

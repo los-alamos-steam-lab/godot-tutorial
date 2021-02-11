@@ -63,8 +63,10 @@ func damage_loop():
 	if hitstun > 0:
 		hitstun -= 1
 		
-	# for any body that is overlapping the entity's hitbox
-	for body in $hitbox.get_overlapping_bodies():
+	# for any area that is overlapping the entity's hitbox
+	for area in $hitbox.get_overlapping_areas():
+		# Body is the area's parent - a weapon or an entity
+		var body = area.get_parent()
 		# if the entity isn't already hit, and the body gives damage, 
 		# and the body is a different type that the entity
 		if hitstun == 0 and body.get("DAMAGE") != null and body.get("TYPE") != TYPE:
@@ -74,5 +76,21 @@ func damage_loop():
 			hitstun = 10
 			# set knockdir to the opposite of the entity approached
 			# the body from
-			knockdir = transform.origin - body.transform.origin
+			knockdir = global_transform.origin - body.global_transform.origin
 
+# Accepts an actual item scene not the name of the scene
+func use_item(item):
+	# create an instance of the item
+	var newitem = item.instance()
+	
+	# add it to the group with item name and the id of its parent
+	newitem.add_to_group(str(newitem.get_name(), self))
+	
+	# make it a child of the entity
+	add_child(newitem)
+	
+	# if there are already too many items of that type on the screen, delete it
+	if get_tree().get_nodes_in_group(str(newitem.get_name(), self)).size() > newitem.maxamount:
+		newitem.queue_free()
+		
+	

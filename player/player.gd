@@ -1,5 +1,7 @@
 extends entity
 
+var state = "default"
+
 # ready function lets us set "constants" when the file loads
 func _ready():
 	SPEED = 70
@@ -10,6 +12,15 @@ func _ready():
 
 # _physics_process is called by the game engine
 func _physics_process(delta):
+	# making things neater with a state engine
+	# this lets us break each state out in to its own function
+	match state:
+		"default":
+			state_default()
+		"swing":
+			state_swing()
+	
+func state_default():
 	controls_loop()
 	movement_loop()
 	spritedir_loop()
@@ -31,8 +42,17 @@ func _physics_process(delta):
 			anim_switch("push")
 	else: 
 		anim_switch("walk")
+		
+	# action keys get put into project settings
+	# if the key assigned to 'a' is pressed then use the sword
+	if Input.is_action_just_pressed("a"):
+		use_item(preload("res://items/sword.tscn"))
+		
 
-	
+# we want to keep the player still but allow them to take damage
+func state_swing():
+	anim_switch("idle")
+	damage_loop()	
 	
 # controls_loop looks for player input
 func controls_loop():
