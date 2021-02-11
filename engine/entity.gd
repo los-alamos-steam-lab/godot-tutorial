@@ -8,8 +8,8 @@ var dir = directions.new()
 # "CONSTANTS"
 var SPEED = 0
 var TYPE = "ENEMY"
-# have to declare damage here so we can set it in the child scripts
 var DAMAGE = null
+var MAXHEALTH = 2
 
 # MOVEMENT
 var movedir = Vector2.ZERO
@@ -17,13 +17,16 @@ var knockdir = Vector2.ZERO
 var spritedir = "down"
 
 var hitstun = 0
-var health = 1
+var health = MAXHEALTH
+var texture_default = null
+var texture_hurt = null
 
 
-# Putting this here so that we can setup future calls from the 
-# child scripts and not have them fail
 func _ready():
-	return
+	texture_default 	= $Sprite.texture
+	# make the hurt texture the same name and path as the default texture
+	# but replace .png with _hurt.png
+	texture_hurt 	= load($Sprite.texture.get_path().replace(".png", "_hurt.png"))
 
 func movement_loop():
 	var motion 
@@ -33,7 +36,7 @@ func movement_loop():
 	if hitstun == 0:
 		motion = movedir.normalized() * SPEED
 	else:
-		motion = knockdir.normalized() * SPEED * 1.5
+		motion = knockdir.normalized() * 125
 		
 	
 	# move_and_slide takes care of collisions and has you slide 
@@ -62,7 +65,18 @@ func damage_loop():
 	# If you're in hitstun countdown the timer
 	if hitstun > 0:
 		hitstun -= 1
+		$Sprite.texture = texture_hurt
+	else:
+		$Sprite.texture = texture_default
 		
+		# if the enemy should be dead
+		if TYPE == "ENEMY" && health <= 0:
+			# create the death animation, put it where the enemy was and destroy the enemy
+			var death_animation = preload("res://enemies/enemy_death.tscn").instance()
+			get_parent().add_child(death_animation)
+			death_animation.global_transform.origin = global_transform.origin
+			queue_free()
+
 	# for any area that is overlapping the entity's hitbox
 	for area in $hitbox.get_overlapping_areas():
 		# Body is the area's parent - a weapon or an entity

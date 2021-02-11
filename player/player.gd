@@ -52,7 +52,9 @@ func state_default():
 # we want to keep the player still but allow them to take damage
 func state_swing():
 	anim_switch("idle")
+	movement_loop()
 	damage_loop()	
+	movedir = Vector2.ZERO
 	
 # controls_loop looks for player input
 func controls_loop():
