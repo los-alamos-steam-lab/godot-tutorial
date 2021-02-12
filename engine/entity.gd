@@ -26,6 +26,9 @@ func _ready():
 	# keep the enemies frozen until they enter the camera scene
 	if TYPE == "ENEMY":
 		set_physics_process(false)
+		# set the collision mask to collide with the 
+		# walls in the camera scene
+		set_collision_mask_bit(1,1)
 	texture_default 	= $Sprite.texture
 	# make the hurt texture the same name and path as the default texture
 	# but replace .png with _hurt.png

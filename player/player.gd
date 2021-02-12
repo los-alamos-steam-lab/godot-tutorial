@@ -9,6 +9,8 @@ func _ready():
 	# since type isn't set until ready in godot 3.1 
 	# we need to fix the physics process
 	set_physics_process(true)
+	set_collision_mask_bit(1,0)
+
 	
 
 # _physics_process is called by the game engine
