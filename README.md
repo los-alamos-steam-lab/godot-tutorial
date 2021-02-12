@@ -2,10 +2,8 @@
 
 This is a fairly faithful account of the code used in fornclake's godot zelda-like tutorials
 
-Lesson 6: https://www.youtube.com/watch?v=ikAJGfuc_Vg&list=PLv0bAfkzWSiY4d_FJlQTlFOZh34nrlJZY&index=6
-Stalfos Hurt Sprite: https://sprites.retro-dragon.com/index.php/2018/08/28/stalfaux-hurt/
-Player Hurt Sprite: https://sprites.retro-dragon.com/index.php/2018/08/27/zlg-player-hurt/
-Enemy Deat Sprite: https://sprites.retro-dragon.com/index.php/2018/08/29/zlg-enemy-death/
+Lesson 7: https://www.youtube.com/watch?v=-Rb-FwMQS7w&list=PLv0bAfkzWSiY4d_FJlQTlFOZh34nrlJZY&index=7
+HUD sprite: https://sprites.retro-dragon.com/index.php/2018/08/29/zlg-hud/
 
 I've added comments and changed a few things based on comments on his YouTube Channel, differences in editions,
 and places where I saw room for improvement.  I have found clones of this repository to work inconsistently 

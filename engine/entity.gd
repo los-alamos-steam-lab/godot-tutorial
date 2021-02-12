@@ -23,6 +23,9 @@ var texture_hurt = null
 
 
 func _ready():
+	# keep the enemies frozen until they enter the camera scene
+	if TYPE == "ENEMY":
+		set_physics_process(false)
 	texture_default 	= $Sprite.texture
 	# make the hurt texture the same name and path as the default texture
 	# but replace .png with _hurt.png

@@ -6,9 +6,10 @@ var state = "default"
 func _ready():
 	SPEED = 70
 	TYPE = "PLAYER"
+	# since type isn't set until ready in godot 3.1 
+	# we need to fix the physics process
+	set_physics_process(true)
 	
-	#This calls the ready function in the parent script
-	._ready()
 
 # _physics_process is called by the game engine
 func _physics_process(delta):
@@ -69,6 +70,5 @@ func controls_loop():
 	movedir.x = -int(LEFT) + int(RIGHT)
 	movedir.y = -int(UP) + int(DOWN)
 	
-# movement_loop makes the character move
 	
 	
