@@ -9,7 +9,7 @@ var dir = directions.new()
 var SPEED = 0
 var TYPE = "ENEMY"
 var DAMAGE = null
-var MAXHEALTH = 2
+var MAXHEALTH = 1
 
 # MOVEMENT
 var movedir = Vector2.ZERO

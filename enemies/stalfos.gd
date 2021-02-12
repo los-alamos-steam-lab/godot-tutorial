@@ -7,7 +7,7 @@ var movetimer = 0
 # other actions when the file loads
 func _ready():
 	SPEED = 40
-	DAMAGE = 1
+	DAMAGE = .25
 	$anim.play("default")
 	movedir = dir.rand()
 	

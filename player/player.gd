@@ -9,6 +9,8 @@ var keys = 0
 func _ready():
 	SPEED = 70
 	TYPE = "PLAYER"
+	MAXHEALTH = 20
+	health = 5.5
 	# since type isn't set until ready in godot 3.1 
 	# we need to fix the physics process
 	set_physics_process(true)

@@ -2,10 +2,8 @@
 
 This is a fairly faithful account of the code used in fornclake's godot zelda-like tutorials
 
-Lesson 9: https://www.youtube.com/watch?v=zKPAL_YotF0&list=PLv0bAfkzWSiY4d_FJlQTlFOZh34nrlJZY&index=9
-New Player Sprites: https://sprites.retro-dragon.com/index.php/2019/10/04/zlg-player-sprite-full-sheet/
-Key Sprite: https://sprites.retro-dragon.com/index.php/2018/08/29/zlg-key/
-Other New Sprites: https://imgur.com/a/801fBLH
+Lesson 10: https://www.youtube.com/watch?v=F_5BrQzIUdc&list=PLv0bAfkzWSiY4d_FJlQTlFOZh34nrlJZY&index=10
+Heart Sprite: https://sprites.retro-dragon.com/index.php/2018/09/01/zlg-hearts/
 
 I've added comments and changed a few things based on comments on his YouTube Channel, differences in editions,
 and places where I saw room for improvement.  I have found clones of this repository to work inconsistently 
