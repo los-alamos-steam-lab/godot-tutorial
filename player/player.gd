@@ -1,6 +1,9 @@
 extends entity
 
 var state = "default"
+var MAXKEYS = 9
+var keys = 0
+
 
 # ready function lets us set "constants" when the file loads
 func _ready():
@@ -22,6 +25,8 @@ func _physics_process(delta):
 			state_default()
 		"swing":
 			state_swing()
+	
+	keys = min(keys, MAXKEYS)
 	
 func state_default():
 	controls_loop()
