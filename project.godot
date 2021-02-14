@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "entity",
 "language": "GDScript",
 "path": "res://engine/entity.gd"
+}, {
+"base": "Area2D",
+"class": "pickup",
+"language": "GDScript",
+"path": "res://pickups/pickup.gd"
 } ]
 _global_script_class_icons={
 "directions": "",
-"entity": ""
+"entity": "",
+"pickup": ""
 }
 
 [application]

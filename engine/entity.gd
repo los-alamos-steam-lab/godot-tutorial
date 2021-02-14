@@ -69,6 +69,7 @@ func anim_switch(animation):
 		
 func damage_loop():
 	# If you're in hitstun countdown the timer
+	health = min(health, MAXHEALTH)
 	if hitstun > 0:
 		hitstun -= 1
 		$Sprite.texture = texture_hurt
@@ -78,9 +79,10 @@ func damage_loop():
 		# if the enemy should be dead
 		if TYPE == "ENEMY" && health <= 0:
 			# create the death animation, put it where the enemy was and destroy the enemy
-			var death_animation = preload("res://enemies/enemy_death.tscn").instance()
-			get_parent().add_child(death_animation)
-			death_animation.global_transform.origin = global_transform.origin
+			var drop = randi() % 4
+			if drop == 0:
+				instance_scene(preload("res://pickups/heart.tscn"))
+			instance_scene(preload("res://enemies/enemy_death.tscn"))
 			queue_free()
 
 	# for any area that is overlapping the entity's hitbox
@@ -112,5 +114,11 @@ func use_item(item):
 	# if there are already too many items of that type on the screen, delete it
 	if get_tree().get_nodes_in_group(str(newitem.get_name(), self)).size() > newitem.maxamount:
 		newitem.queue_free()
+		
+func instance_scene(scene):
+	var new_scene = scene.instance()
+	new_scene.global_position = global_position
+	get_parent().add_child(new_scene)
+	
 		
 	

@@ -7,6 +7,7 @@ func _ready():
 	# when a body enters or exits, call a function
 	$area.connect("body_entered", self, "body_entered")
 	$area.connect("body_exited", self, "body_exited")
+	$area.connect("area_exited", self, "area_exited")
 	
 func _process(delta):
 	# Find the position of the player (which means it has to be on the 
@@ -28,3 +29,8 @@ func body_exited(body):
 	# make the enemies stope when they leave the camera
 	if body.get("TYPE") == "ENEMY":
 		body.set_physics_process(false)
+		
+func area_exited(area):
+	if area.get("disappears") == true:
+		area.queue_free()
+		
