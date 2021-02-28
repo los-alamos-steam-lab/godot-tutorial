@@ -3,6 +3,7 @@
 This is a fairly faithful account of the code used in fornclake's godot zelda-like tutorials
 
 Lesson 7: https://www.youtube.com/watch?v=-Rb-FwMQS7w&list=PLv0bAfkzWSiY4d_FJlQTlFOZh34nrlJZY&index=7
+
 HUD sprite: https://sprites.retro-dragon.com/index.php/2018/08/29/zlg-hud/
 
 I've added comments and changed a few things based on comments on his YouTube Channel, differences in editions,
